@@ -1,24 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
+const Home = () => (
+  <>
+    <Helmet>
+      <title>Home title</title>
+    </Helmet>
+    <h1>Home</h1>
+    <ul>
+      <li key="1">
+        <Link to="/first-page">First Page</Link>
+      </li>
+      <li key="2">
+        <Link to="/second-page">Second Page</Link>
+      </li>
+    </ul>
+  </>
+);
+
+export const FirstPage = () => (
+  <>
+    <Helmet>
+      <title>First title</title>
+    </Helmet>
+    <h1>First Page</h1>
+    <Link to="/">Go back Home</Link>
+  </>
+);
+
+export const SecondPage = () => (
+  <>
+    <Helmet>
+      <title>Second title</title>
+    </Helmet>
+    <h1>Second Page</h1>
+    <Link to="/">Go back Home</Link>
+  </>
+);
 
 function App() {
+  console.log(process.env.NODE_ENV);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/first-page" component={FirstPage} />
+      <Route path="/second-page" component={SecondPage} />
+    </Switch>
+
   );
 }
 
